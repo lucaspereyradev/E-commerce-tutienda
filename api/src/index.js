@@ -6,7 +6,7 @@ const cors = require('cors');
 const indexRoutes = require('./routes/index.route.js');
 require('./config/utils.db');
 
-const port = process.env.SERVER_PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
