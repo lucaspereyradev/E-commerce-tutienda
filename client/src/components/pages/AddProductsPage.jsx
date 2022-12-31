@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function AddProductsPage() {
-    const url = 'http://localhost:5050/v0/product';
+    const url = 'https://api-ecommerce-tutienda.up.railway.app/v0/product';
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [stock, setStock] = useState('');
@@ -52,7 +52,9 @@ export default function AddProductsPage() {
 
     useEffect(() => {
         async function productosDB() {
-            const res = await axios.get('http://localhost:5050/v0/product/');
+            const res = await axios.get(
+                'https://api-ecommerce-tutienda.up.railway.app/v0/product/'
+            );
             setProducts(res.data.data);
         }
         productosDB();

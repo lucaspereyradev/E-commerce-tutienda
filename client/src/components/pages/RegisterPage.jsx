@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 export default function RegisterPage() {
-    const url = 'http://localhost:5050/v0/users/';
+    const url = 'https://api-ecommerce-tutienda.up.railway.app/v0/users/';
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');

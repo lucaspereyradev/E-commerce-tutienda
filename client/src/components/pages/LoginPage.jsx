@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 export default function LoginPage() {
-    const url = 'http://localhost:5050/v0/users/login';
+    const url = 'https://api-ecommerce-tutienda.up.railway.app/v0/users/login';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

@@ -9,7 +9,9 @@ function MapProductsAndCategory(props) {
 
     useEffect(() => {
         async function productosDB() {
-            const res = await axios.get('http://localhost:5050/v0/product/');
+            const res = await axios.get(
+                'https://api-ecommerce-tutienda.up.railway.app/v0/product/'
+            );
             setProducts(res.data.data);
         }
         productosDB();
