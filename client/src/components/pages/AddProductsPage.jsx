@@ -48,7 +48,6 @@ export default function AddProductsPage() {
             }, 7000);
         }
     };
-    console.log(errorMessage);
 
     useEffect(() => {
         async function productosDB() {
