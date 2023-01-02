@@ -24,7 +24,7 @@ function CardDesing(props) {
     const { addItem } = useCart();
 
     return (
-        <div className="card">
+        <div className="card m-auto">
             <div className="w-full h-[16rem] ">
                 <img className="w-full h-full object-cover" src={props.image} alt={props.name} />
             </div>

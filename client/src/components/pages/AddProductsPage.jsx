@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function AddProductsPage() {
     const url = 'https://api-ecommerce-tutienda.up.railway.app/v0/product';
@@ -14,6 +16,18 @@ export default function AddProductsPage() {
 
     const [userToken, setUserToken] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [message, setMessage] = useState(null);
+
+    const MySwal = withReactContent(Swal);
+    function showDeleteAlert() {
+        MySwal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Borrado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedInApp');
@@ -40,7 +54,8 @@ export default function AddProductsPage() {
             formData.append('image', image[0]);
             formData.append('Category', category);
             const resp = await axios.post(url, formData, config);
-            console.log(resp.data);
+
+            setMessage('Creado correctamente');
         } catch (error) {
             setErrorMessage(error.response.data.message);
             setTimeout(() => {
@@ -57,10 +72,21 @@ export default function AddProductsPage() {
             setProducts(res.data.data);
         }
         productosDB();
-    }, []);
+    }, [products]);
+
+    const deleteProduct = async (e) => {
+        const id = e.target.parentNode.parentNode.id;
+        try {
+            const resp = await axios.delete(
+                `https://api-ecommerce-tutienda.up.railway.app/v0/product/${id}`
+            );
+        } catch {
+            console.log('elemento no borrado');
+        }
+    };
 
     return (
-        <div className="container grid grid-cols-2 m-auto gap-20 mt-12">
+        <div className="container grid grid-cols-1 md:grid-cols-2 max-md:px-8 m-auto gap-20 mt-12">
             <div>
                 <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -74,7 +100,7 @@ export default function AddProductsPage() {
                                     Precio
                                 </th>
                                 <th scope="col" className="py-3 px-6">
-                                    <span className="sr-only">Editar</span>
+                                    <span className="sr-only"></span>
                                 </th>
                             </tr>
                         </thead>
@@ -84,6 +110,7 @@ export default function AddProductsPage() {
                                     <tr
                                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                         key={product.id}
+                                        id={product.id}
                                     >
                                         <th
                                             scope="row"
@@ -95,13 +122,9 @@ export default function AddProductsPage() {
                                         <td className="py-4 px-6">$ {product.price}</td>
                                         <td className="py-4 px-6 text-right">
                                             <button
-                                                href="#"
-                                                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
-                                                href="#"
+                                                onClick={(e) => {
+                                                    deleteProduct(e), showDeleteAlert();
+                                                }}
                                                 className="ml-4 font-medium text-red-600 dark:text-red-500 hover:underline"
                                             >
                                                 Eliminar
@@ -118,11 +141,16 @@ export default function AddProductsPage() {
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>
                     <h3 className="text-center font-bold mb-4 text-lg">Publicar producto</h3>
                     {errorMessage && (
-                        <h3 className="text-center py-2 rounded-lg text-white w-full bg-red-500">
+                        <h3 className="text-center py-2 rounded-lg text-white w-full bg-red-500 mb-2">
                             {errorMessage}
                         </h3>
                     )}
-                    <div className="w-[50%] m-auto flex flex-col gap-y-3">
+                    {message && (
+                        <h3 className="text-center py-2 rounded-lg text-white w-full bg-green-500 mb-2">
+                            {message}
+                        </h3>
+                    )}
+                    <div className="w-[100%] m-auto flex flex-col gap-y-3">
                         <input
                             name="name"
                             className="w-full rounded-lg"

@@ -60,38 +60,22 @@ export default function FilterProductsAndSearch() {
     return (
         <>
             <div className="container lg:flex m-auto max-w-[70%] mb-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 w-full max-md:gap-y-10">
-                    <div className="flex max-lg:flex-wrap gap-2.5 xl:transform xl:-translate-x-10 2xl:-translate-x-0">
-                        <button
-                            onClick={handleChangeCategory}
-                            className="buttons-filter m-auto w-full"
-                            value="0"
-                        >
+                <div className="grid grid-cols-1 xl:grid-cols-2 w-full max-xl:gap-y-10">
+                    <div className="flex max-lg:flex-wrap gap-2.5 xl:transform xl:-translate-x-10 2xl:-translate-x-0 max-xl:mx-auto">
+                        <button onClick={handleChangeCategory} className="buttons-filter" value="0">
                             Todos los productos
                         </button>
-                        <button
-                            onClick={handleChangeCategory}
-                            className="buttons-filter m-auto"
-                            value="1"
-                        >
+                        <button onClick={handleChangeCategory} className="buttons-filter" value="1">
                             Celulares
                         </button>
-                        <button
-                            onClick={handleChangeCategory}
-                            className="buttons-filter m-auto"
-                            value="3"
-                        >
+                        <button onClick={handleChangeCategory} className="buttons-filter" value="3">
                             Computadoras
                         </button>
-                        <button
-                            onClick={handleChangeCategory}
-                            className="buttons-filter m-auto"
-                            value="2"
-                        >
+                        <button onClick={handleChangeCategory} className="buttons-filter" value="2">
                             Tablets
                         </button>
                     </div>
-                    <div className="lg:ml-auto max-lg:m-auto flex flex-wrap mt-10 md:mt-8 lg:mt-0 gap-2 xl:transform xl:translate-x-10 2xl:translate-x-0">
+                    <div className="lg:ml-auto max-lg:m-auto flex flex-wrap gap-2 xl:transform xl:translate-x-10 2xl:translate-x-0 max-xl:mx-auto">
                         {user ? (
                             <>
                                 <Link to="/addproducts" className="m-auto">
@@ -120,7 +104,7 @@ export default function FilterProductsAndSearch() {
                     </div>
                 </div>
             </div>
-            <div className="container w-[70%] sm:w-[90%] md:w-[70%] m-auto mb-36 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-14 gap-y-6">
+            <div className="container w-[100%] sm:w-[95%] md:w-[80%] mb-36 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-14 xl:gap-x-0 xl:w-[70%] gap-y-6 m-auto">
                 {search
                     ? productsFiltered.map((product) => {
                           return (
