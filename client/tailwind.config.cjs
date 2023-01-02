@@ -6,6 +6,7 @@ module.exports = {
 
     theme: {
         extend: {
+            screens: {},
             maxWidth: {
                 '60Screen': '60%',
             },

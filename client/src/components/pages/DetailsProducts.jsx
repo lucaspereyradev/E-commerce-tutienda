@@ -51,8 +51,8 @@ function DetailsProducts() {
     return (
         <>
             <div className="w-[80vw] m-auto mt-12">
-                <div className="flex justify-around">
-                    <div className="h-96 p-2 border border-slate-200 shadow-lg flex justify-center items-center">
+                <div className="flex justify-around max-lg:flex-col gap-4">
+                    <div className="h-96 p-2 max-[500px]:h-56 max-[250px]:h-24 border border-slate-200 shadow-lg flex justify-center items-center">
                         <img
                             className="object-cover w-full h-full"
                             src={product.image}
@@ -81,7 +81,6 @@ function DetailsProducts() {
                 </div>
             </div>
             <hr className="my-20 " />
-            <QuestionAndAnswer />
         </>
     );
 }
